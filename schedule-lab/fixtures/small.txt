@@ -1,9 +1,0 @@
-Small fixture for relative-path and failure tests.
-
-Use this file to verify that scheduled tasks can read a known file relative to the selected working folder.
-
-Expected facts:
-
-- file name: small.txt
-- folder: fixtures
-- purpose: simple relative read
