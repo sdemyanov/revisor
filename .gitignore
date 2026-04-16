@@ -5,7 +5,6 @@
 plans/
 
 # Build artifacts
-*.plugin
 revisor-new.plugin
 
 # Local working dirs
