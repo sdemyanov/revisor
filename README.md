@@ -1,15 +1,23 @@
 # Revisor
 
-Revisor is a local-first Claude Cowork plugin for business diagnostics and weekly financial briefings.
+Revisor is a local-first Claude Cowork plugin for business diagnostics, CRM and subscription analytics, and unified weekly briefings across QuickBooks, HubSpot, and Stripe.
 
-This repo has completed Phase 0, locked the Phase 1 contracts, and now includes
-the first Phase 2/3 implementation slice:
+## Release Status
 
-- package and install the plugin shell
-- verify `/revisor:ping` works
-- confirm the local marketplace entry can be used for install testing
-- lock the initial QuickBooks/file-contract decisions before entrypoint authoring starts
-- ship the first shared Revisor reasoning skills plus `/revisor:qb-setup`
+`v0.1.0` is the current release candidate in this workspace.
+
+Included in `v0.1.0`:
+
+- full QuickBooks financial loop
+- full HubSpot pipeline loop
+- full Stripe subscription loop
+- cross-source `biz-*` layer
+- scheduled weekly prompts for source-specific and unified business briefings
+
+Next release train:
+
+- Salesforce parity
+- connector-specific expansions that depend on still-unproven invoice, aging, vendor-detail, or customer-detail surfaces
 
 ## Current Contents
 
@@ -87,6 +95,8 @@ From the repo root:
 ```
 
 This creates `revisor.plugin`.
+
+For release notes, see [`CHANGELOG.md`](./CHANGELOG.md).
 
 ## Command Surface
 

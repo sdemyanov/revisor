@@ -1,7 +1,7 @@
 {
   "name": "revisor",
   "version": "0.1.0",
-  "description": "Local-first QuickBooks, HubSpot, and Stripe diagnostics, forecasting, and weekly briefings for Claude Cowork.",
+  "description": "Local-first business diagnostics, CRM and subscription analytics, and weekly briefings across QuickBooks, HubSpot, and Stripe for Claude Cowork.",
   "author": {
     "name": "Sergey"
   },
@@ -14,6 +14,8 @@
     "business-intelligence",
     "cash-flow",
     "forecasting",
+    "analytics",
+    "weekly-briefings",
     "cowork",
     "crm",
     "subscriptions"
