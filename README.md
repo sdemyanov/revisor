@@ -178,39 +178,18 @@ Start here before a manual test pass:
 4. follow [`validation/hubspot-stripe-smoke-tests.md`](./validation/hubspot-stripe-smoke-tests.md) when those connectors are enabled
 5. follow [`validation/biz-command-smoke-tests.md`](./validation/biz-command-smoke-tests.md) once the standalone connector loops are stable
 
-Recommended next focused validation round:
+Recommended release-hardening validation round:
 
 1. fresh install
-2. scheduled weekly run
-3. `/revisor:qb-whatif can I afford a $120000/year hire starting June`
+2. scheduled `/revisor:biz-weekly` run
+3. `/revisor:biz-customers`
+4. `/revisor:biz-weekly`
+5. `/revisor:biz-report`
 
-Once that round is complete, the next connector-expansion round is:
+The next release train after v0.1 is:
 
-1. `/revisor:hub-setup`
-2. `/revisor:hub-pipeline`
-3. `/revisor:hub-forecast`
-4. `/revisor:stripe-setup`
-5. `/revisor:stripe-mrr`
-6. `/revisor:stripe-churn`
-
-The follow-on connector weekly / operational round is:
-
-1. `/revisor:hub-velocity`
-2. `/revisor:hub-sources`
-3. `/revisor:hub-weekly`
-4. `/revisor:stripe-payments`
-5. `/revisor:stripe-weekly`
-
-Then the first cross-source round is:
-
-1. `/revisor:biz-health`
-2. `/revisor:biz-forecast`
-3. `/revisor:biz-report`
-
-Then the follow-on cross-source round is:
-
-1. `/revisor:biz-customers`
-2. `/revisor:biz-weekly`
+1. Salesforce parity (`/revisor:sf-*`)
+2. connector-specific expansions that depend on currently unproven invoice, aging, or customer-detail surfaces
 
 ## Phase 0 Smoke Test
 
