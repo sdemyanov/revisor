@@ -1,0 +1,50 @@
+{
+  "schema_version": "revisor.connector.snapshot.v1",
+  "captured_at": "2026-04-16T18:50:00Z",
+  "flow_slug": "stripe-weekly",
+  "sources": [
+    {
+      "system": "stripe",
+      "account_id": "acct_demo123",
+      "pulled_at": "2026-04-16T18:50:00Z",
+      "date_range": {
+        "from": "2025-04-01",
+        "to": "2026-03-31"
+      },
+      "capabilities_used": [
+        "subscriptions",
+        "customers",
+        "invoices"
+      ]
+    }
+  ],
+  "metrics": {
+    "current_mrr": {
+      "currency": "USD",
+      "amount": 0
+    },
+    "lifetime_gross_revenue": {
+      "currency": "USD",
+      "amount": 400
+    },
+    "active_subscribers": 0,
+    "logo_churn_rate": 1,
+    "revenue_churn_rate": 1,
+    "failed_payment_count_last_30_days": 0,
+    "at_risk_subscriber_count": 0
+  },
+  "alerts": [
+    {
+      "severity": "warning",
+      "code": "stripe_zero_mrr",
+      "message": "Current normalized MRR is zero."
+    }
+  ],
+  "highlights": [
+    {
+      "message": "Legacy product is fully churned and the new product remains pre-revenue.",
+      "category": "subscriptions",
+      "direction": "flat"
+    }
+  ]
+}

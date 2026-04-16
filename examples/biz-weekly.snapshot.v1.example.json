@@ -1,0 +1,86 @@
+{
+  "schema_version": "revisor.connector.snapshot.v1",
+  "captured_at": "2026-04-16T21:40:00Z",
+  "flow_slug": "biz-weekly",
+  "sources": [
+    {
+      "system": "quickbooks",
+      "account_id": "lumos-land-qbo",
+      "pulled_at": "2026-04-16T21:40:00Z",
+      "date_range": {
+        "from": "2025-04-01",
+        "to": "2026-03-31"
+      },
+      "capabilities_used": [
+        "company-info",
+        "profit-loss-quickbooks-account",
+        "cash-flow-quickbooks-account"
+      ]
+    },
+    {
+      "system": "hubspot",
+      "account_id": "hubspot-demo-account",
+      "pulled_at": "2026-04-16T21:40:00Z",
+      "date_range": {
+        "from": "2025-04-01",
+        "to": "2026-03-31"
+      },
+      "capabilities_used": [
+        "deals",
+        "companies"
+      ]
+    },
+    {
+      "system": "stripe",
+      "account_id": "acct_demo123",
+      "pulled_at": "2026-04-16T21:40:00Z",
+      "date_range": {
+        "from": "2025-04-01",
+        "to": "2026-03-31"
+      },
+      "capabilities_used": [
+        "subscriptions",
+        "customers",
+        "invoices"
+      ]
+    }
+  ],
+  "metrics": {
+    "cash_balance": {
+      "currency": "USD",
+      "amount": 57.32
+    },
+    "cash_balance_as_of": "2026-04-15",
+    "base_runway_months": 0.7,
+    "worst_runway_months": 0.07,
+    "current_mrr": {
+      "currency": "USD",
+      "amount": 0
+    },
+    "active_subscriber_count": 0,
+    "open_pipeline_value": {
+      "currency": "USD",
+      "amount": 32800
+    },
+    "weighted_pipeline_value": {
+      "currency": "USD",
+      "amount": 23900
+    },
+    "stalled_deal_count": 5,
+    "confirmed_entity_mapping_count": 0
+  },
+  "alerts": [
+    {
+      "severity": "critical",
+      "code": "biz_transition_gap",
+      "message": "Runway is short while current MRR is zero and active pipeline is materially stalled."
+    }
+  ],
+  "highlights": [
+    {
+      "message": "The old product has churned before the new pipeline has converted, creating a financing-backed product transition gap.",
+      "category": "cross_source",
+      "direction": "flat"
+    }
+  ]
+}

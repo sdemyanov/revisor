@@ -1,0 +1,389 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://revisor.local/schemas/context.schema.v1.json",
+  "title": "Revisor Context v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "business_profile",
+    "product_lines",
+    "strategic_context",
+    "key_clients",
+    "targets",
+    "source_accounts",
+    "entity_mappings",
+    "periodic_expenses",
+    "last_updated"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "revisor.context.v1"
+    },
+    "business_profile": {
+      "$ref": "#/$defs/business_profile"
+    },
+    "product_lines": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/product_line"
+      }
+    },
+    "strategic_context": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/dated_fact"
+      }
+    },
+    "key_clients": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/key_client"
+      }
+    },
+    "targets": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/target_value"
+      }
+    },
+    "source_accounts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source_account"
+      }
+    },
+    "entity_mappings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entity_mapping"
+      }
+    },
+    "periodic_expenses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/periodic_expense"
+      }
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "$defs": {
+    "business_profile": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "detected_from": {
+          "type": "string"
+        },
+        "confirmed_by_user": {
+          "type": "boolean"
+        },
+        "fiscal_year_start": {
+          "type": "string"
+        },
+        "seasonality": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "product_line": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "revenue_share": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "notes": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "dated_fact": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "item",
+        "source",
+        "date"
+      ],
+      "properties": {
+        "item": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "target_value": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/target_value"
+          }
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/target_value"
+          }
+        }
+      ]
+    },
+    "key_client": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "revenue_share": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "status": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "source_account": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "system",
+        "account_id",
+        "status"
+      ],
+      "properties": {
+        "system": {
+          "type": "string"
+        },
+        "account_id": {
+          "type": "string"
+        },
+        "account_name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "connected_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "provenance": {
+          "type": "string"
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "entity_mapping": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "entity_type",
+        "label",
+        "sources",
+        "confirmed_at"
+      ],
+      "properties": {
+        "entity_type": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "system",
+              "external_id"
+            ],
+            "properties": {
+              "system": {
+                "type": "string"
+              },
+              "external_id": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "confirmed_by": {
+          "type": "string"
+        },
+        "confirmed_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "periodic_expense": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "vendor",
+        "category",
+        "frequency",
+        "status",
+        "include_in_forecast"
+      ],
+      "properties": {
+        "vendor": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "amount_last": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "frequency": {
+          "type": "string",
+          "enum": [
+            "monthly",
+            "quarterly",
+            "semiannual",
+            "annual",
+            "custom",
+            "irregular"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "confirmed",
+            "assumed",
+            "excluded"
+          ]
+        },
+        "include_in_forecast": {
+          "type": "boolean"
+        },
+        "last_paid": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "next_expected": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "yoy_change": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "confidence": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "last_reviewed": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    }
+  }
+}

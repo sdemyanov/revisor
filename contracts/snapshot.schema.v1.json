@@ -1,0 +1,263 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://revisor.local/schemas/snapshot.schema.v1.json",
+  "title": "Revisor Snapshot v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "captured_at",
+    "sources",
+    "metrics",
+    "alerts",
+    "highlights"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "revisor.snapshot.v1"
+    },
+    "captured_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "flow_slug": {
+      "type": "string"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/source_record"
+      }
+    },
+    "metrics": {
+      "$ref": "#/$defs/metrics"
+    },
+    "alerts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/alert"
+      }
+    },
+    "highlights": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/highlight"
+      }
+    }
+  },
+  "$defs": {
+    "money_value": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "currency",
+        "amount"
+      ],
+      "properties": {
+        "currency": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number"
+        }
+      }
+    },
+    "source_record": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "system",
+        "account_id",
+        "pulled_at"
+      ],
+      "properties": {
+        "system": {
+          "type": "string"
+        },
+        "account_id": {
+          "type": "string"
+        },
+        "pulled_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "date_range": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "from",
+            "to"
+          ],
+          "properties": {
+            "from": {
+              "type": "string",
+              "format": "date"
+            },
+            "to": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        },
+        "capabilities_used": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "cash_balance",
+        "trailing_revenue",
+        "gross_profit",
+        "total_expenses",
+        "net_income",
+        "gross_margin",
+        "net_margin",
+        "runway_months"
+      ],
+      "properties": {
+        "cash_balance": {
+          "$ref": "#/$defs/money_value"
+        },
+        "trailing_revenue": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/money_value"
+            }
+          ]
+        },
+        "cash_balance_as_of": {
+          "type": "string",
+          "format": "date"
+        },
+        "gross_profit": {
+          "$ref": "#/$defs/money_value"
+        },
+        "total_expenses": {
+          "$ref": "#/$defs/money_value"
+        },
+        "net_income": {
+          "$ref": "#/$defs/money_value"
+        },
+        "overdue_ar": {
+          "$ref": "#/$defs/money_value"
+        },
+        "overdue_ap": {
+          "$ref": "#/$defs/money_value"
+        },
+        "gross_margin": {
+          "type": "number"
+        },
+        "net_margin": {
+          "type": "number"
+        },
+        "runway_months": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "best",
+            "base",
+            "worst"
+          ],
+          "properties": {
+            "best": {
+              "type": "number"
+            },
+            "base": {
+              "type": "number"
+            },
+            "worst": {
+              "type": "number"
+            }
+          }
+        },
+        "periodic_expenses_next_60_days": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "vendor",
+              "category",
+              "expected_on",
+              "amount"
+            ],
+            "properties": {
+              "vendor": {
+                "type": "string"
+              },
+              "category": {
+                "type": "string"
+              },
+              "expected_on": {
+                "type": "string",
+                "format": "date"
+              },
+              "amount": {
+                "$ref": "#/$defs/money_value"
+              }
+            }
+          }
+        }
+      }
+    },
+    "alert": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "severity",
+        "code",
+        "message"
+      ],
+      "properties": {
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "warning",
+            "critical"
+          ]
+        },
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "metric_ref": {
+          "type": "string"
+        }
+      }
+    },
+    "highlight": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "up",
+            "down",
+            "flat",
+            "mixed"
+          ]
+        }
+      }
+    }
+  }
+}

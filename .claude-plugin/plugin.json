@@ -1,0 +1,21 @@
+{
+  "name": "revisor",
+  "version": "0.1.0",
+  "description": "Local-first QuickBooks, HubSpot, and Stripe diagnostics, forecasting, and weekly briefings for Claude Cowork.",
+  "author": {
+    "name": "Sergey"
+  },
+  "keywords": [
+    "revisor",
+    "quickbooks",
+    "hubspot",
+    "stripe",
+    "finance",
+    "business-intelligence",
+    "cash-flow",
+    "forecasting",
+    "cowork",
+    "crm",
+    "subscriptions"
+  ]
+}

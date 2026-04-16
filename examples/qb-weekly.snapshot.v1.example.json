@@ -1,0 +1,88 @@
+{
+  "schema_version": "revisor.snapshot.v1",
+  "captured_at": "2026-04-22T16:00:00Z",
+  "flow_slug": "qb-weekly",
+  "sources": [
+    {
+      "system": "quickbooks",
+      "account_id": "lumos-land-primary",
+      "pulled_at": "2026-04-22T15:58:11Z",
+      "date_range": {
+        "from": "2025-04-01",
+        "to": "2026-03-31"
+      },
+      "capabilities_used": [
+        "company-info",
+        "profit-loss-quickbooks-account",
+        "cash-flow-quickbooks-account"
+      ]
+    }
+  ],
+  "metrics": {
+    "cash_balance": {
+      "currency": "USD",
+      "amount": 214300
+    },
+    "cash_balance_as_of": "2026-04-22",
+    "trailing_revenue": {
+      "currency": "USD",
+      "amount": 1187000
+    },
+    "gross_profit": {
+      "currency": "USD",
+      "amount": 794000
+    },
+    "total_expenses": {
+      "currency": "USD",
+      "amount": 624000
+    },
+    "net_income": {
+      "currency": "USD",
+      "amount": 166000
+    },
+    "gross_margin": 0.67,
+    "net_margin": 0.14,
+    "runway_months": {
+      "best": 14.2,
+      "base": 9.1,
+      "worst": 6.4
+    },
+    "periodic_expenses_next_60_days": [
+      {
+        "vendor": "Hartford Insurance",
+        "category": "Insurance",
+        "expected_on": "2026-05-20",
+        "amount": {
+          "currency": "USD",
+          "amount": 8200
+        }
+      }
+    ]
+  },
+  "alerts": [
+    {
+      "severity": "warning",
+      "code": "cash-window",
+      "message": "Cash balance should be interpreted as period-end cash for the requested window, not a live bank balance.",
+      "metric_ref": "metrics.cash_balance"
+    },
+    {
+      "severity": "warning",
+      "code": "software-renewal",
+      "message": "A low-confidence annual software renewal is coming up in the next 60 days and should be owner-confirmed before relying on it.",
+      "metric_ref": "metrics.periodic_expenses_next_60_days"
+    }
+  ],
+  "highlights": [
+    {
+      "message": "Base-case runway remains above target at 9.1 months.",
+      "category": "runway",
+      "direction": "flat"
+    },
+    {
+      "message": "Gross margin improved 4 points versus the prior quarter.",
+      "category": "margin",
+      "direction": "up"
+    }
+  ]
+}

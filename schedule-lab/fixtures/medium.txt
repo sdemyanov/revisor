@@ -1,0 +1,31 @@
+Medium fixture for long-run and structured-processing tests.
+
+Section 1
+Revisor is exploring whether Cowork scheduled tasks replay missed intervals individually or collapse them into a single catch-up run. The answer affects dedupe strategy, snapshot naming, and how much trust the product can place in automatic recurrence.
+
+Section 2
+A safe probe should always write locally first. Local evidence is easier to audit than a connector side effect because it preserves exact timestamps, file counts, and run markers inside the chosen working directory.
+
+Section 3
+Relative paths matter because Revisor plans to persist snapshots and reports under a local project folder. If scheduled tasks resolve paths differently than manual tasks, file-output promises must be narrowed before launch.
+
+Section 4
+Connector parity matters because the weekly briefing loses value if scheduled sessions cannot reach the same data sources available in an interactive Cowork session. The test harness should verify access, not business logic.
+
+Section 5
+Failure handling matters because a scheduled task that writes half a report and then dies can leave confusing artifacts behind. Revisor may need a two-step write pattern or explicit recovery checks before final outputs are created.
+
+Section 6
+Outbound delivery is useful but risky. If catch-up or retries resend the same alert to Slack or email, the product needs dedupe protection or a stronger default toward local-only delivery for MVP.
+
+Section 7
+Time zone behavior is operationally important. A recurring Monday-morning briefing should mean the user's Monday morning, not an undocumented server or session time zone that drifts after travel or daylight saving changes.
+
+Section 8
+Overlap behavior is worth learning even if weekly cadence remains the default. If long runs queue, skip, or overlap, that behavior informs whether future higher-frequency tasks are realistic.
+
+Section 9
+The harness should produce evidence that is easy to count: one file per run, one append-only log, one unique run slug, and one results ledger entry per experiment. Ambiguous probes create ambiguous conclusions.
+
+Section 10
+The final goal is not just to learn platform behavior. The goal is to convert each observed behavior into a concrete Revisor product decision so the implementation plan and product plan stop relying on assumptions.

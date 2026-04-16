@@ -1,0 +1,50 @@
+{
+  "schema_version": "revisor.connector.snapshot.v1",
+  "captured_at": "2026-04-16T18:45:00Z",
+  "flow_slug": "hub-weekly",
+  "sources": [
+    {
+      "system": "hubspot",
+      "account_id": "hubspot-demo-account",
+      "pulled_at": "2026-04-16T18:45:00Z",
+      "date_range": {
+        "from": "2025-04-01",
+        "to": "2026-03-31"
+      },
+      "capabilities_used": [
+        "deals",
+        "companies",
+        "lead_sources"
+      ]
+    }
+  ],
+  "metrics": {
+    "open_pipeline_value": {
+      "currency": "USD",
+      "amount": 32800
+    },
+    "weighted_pipeline_value": {
+      "currency": "USD",
+      "amount": 23900
+    },
+    "deal_count": 5,
+    "stalled_deal_count": 5,
+    "average_days_past_due_close": 420,
+    "coverage_ratio": 0.6,
+    "unknown_source_rate": 0.2
+  },
+  "alerts": [
+    {
+      "severity": "critical",
+      "code": "hub_pipeline_all_stalled",
+      "message": "All active deals are materially past their expected close dates."
+    }
+  ],
+  "highlights": [
+    {
+      "message": "Weighted pipeline remains concentrated in a small number of law-firm deals.",
+      "category": "pipeline",
+      "direction": "flat"
+    }
+  ]
+}

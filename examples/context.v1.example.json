@@ -1,0 +1,167 @@
+{
+  "schema_version": "revisor.context.v1",
+  "business_profile": {
+    "type": "SaaS + consulting hybrid",
+    "detected_from": "QuickBooks income and expense account patterns",
+    "confirmed_by_user": true,
+    "fiscal_year_start": "January",
+    "seasonality": "Consulting peaks in Q4; SaaS renewals cluster in March and September",
+    "notes": "Owner wants sharper weekly guidance without moving financial data into a SaaS dashboard"
+  },
+  "product_lines": [
+    {
+      "name": "Platform SaaS",
+      "status": "growth",
+      "revenue_share": 0.45,
+      "notes": "Launching enterprise tier in Q3 2026",
+      "source": "user stated during setup",
+      "date": "2026-04-15"
+    },
+    {
+      "name": "Consulting",
+      "status": "stable",
+      "revenue_share": 0.4,
+      "notes": "Seasonal peak in Q4",
+      "source": "inferred from QuickBooks account mix",
+      "date": "2026-04-15"
+    },
+    {
+      "name": "Training",
+      "status": "evaluating",
+      "revenue_share": 0.15,
+      "notes": "Considering sunsetting due to low margin",
+      "source": "user stated during setup",
+      "date": "2026-04-15"
+    }
+  ],
+  "strategic_context": [
+    {
+      "item": "Hiring 2 engineers for platform team",
+      "source": "user stated during setup",
+      "date": "2026-04-15"
+    },
+    {
+      "item": "Enterprise tier launch planned for Q3 2026",
+      "source": "user stated during setup",
+      "date": "2026-04-15"
+    },
+    {
+      "item": "Considering a consulting rate increase before Q4",
+      "source": "inferred from what-if discussion",
+      "date": "2026-04-22"
+    }
+  ],
+  "key_clients": [
+    {
+      "name": "Acme Corp",
+      "revenue_share": 0.28,
+      "status": "stable",
+      "notes": "Multi-year contract; auto-renews in September",
+      "source": "user stated during setup",
+      "date": "2026-04-15"
+    },
+    {
+      "name": "Initech",
+      "revenue_share": 0.22,
+      "status": "at_risk",
+      "notes": "Month-to-month; owner flagged possible non-renewal",
+      "source": "user stated during setup",
+      "date": "2026-04-15"
+    }
+  ],
+  "targets": {
+    "revenue_goal": "Reach $1.2M ARR by end of 2026",
+    "runway_threshold_months": 6,
+    "headcount_plan": "Grow from 8 to 12 by Q4 2026",
+    "max_client_concentration": 0.3,
+    "cash_floor": {
+      "currency": "USD",
+      "amount": 50000,
+      "alert_when_below": true,
+      "set_on": "2026-04-15",
+      "note": "Founder wants an early warning before operating cash drops below the minimum comfort buffer."
+    }
+  },
+  "source_accounts": [
+    {
+      "system": "quickbooks",
+      "account_id": "lumos-land-primary",
+      "account_name": "Lumos Land Inc.",
+      "status": "connected",
+      "connected_at": "2026-04-15",
+      "provenance": "Connected through Claude Cowork QuickBooks connector",
+      "metadata": {
+        "industry_code": "518210",
+        "display_currency": "USD"
+      }
+    }
+  ],
+  "entity_mappings": [],
+  "periodic_expenses": [
+    {
+      "vendor": "Annual insurance renewal",
+      "category": "Insurance",
+      "amount_last": 8200,
+      "frequency": "annual",
+      "status": "confirmed",
+      "include_in_forecast": true,
+      "last_paid": "2025-05-20",
+      "next_expected": "2026-05-20",
+      "yoy_change": null,
+      "confidence": "high",
+      "notes": "User confirmed this annual renewal during setup.",
+      "source": "user confirmed during setup",
+      "date": "2026-04-15",
+      "last_reviewed": "2026-04-15"
+    },
+    {
+      "vendor": "Quarterly estimated tax payment",
+      "category": "Tax",
+      "amount_last": 11500,
+      "frequency": "quarterly",
+      "status": "confirmed",
+      "include_in_forecast": true,
+      "last_paid": "2026-01-15",
+      "next_expected": "2026-04-15",
+      "yoy_change": null,
+      "confidence": "medium",
+      "notes": "Entered after owner confirmed estimated tax cadence.",
+      "source": "user confirmed during setup",
+      "date": "2026-04-15",
+      "last_reviewed": "2026-04-15"
+    },
+    {
+      "vendor": "Software renewals bucket",
+      "category": "Software",
+      "amount_last": 4800,
+      "frequency": "annual",
+      "status": "assumed",
+      "include_in_forecast": true,
+      "last_paid": "2025-03-15",
+      "next_expected": "2026-03-15",
+      "yoy_change": null,
+      "confidence": "medium",
+      "notes": "Included by default because missing a real renewal is riskier than over-warning; owner can exclude it if this category spike was one-time.",
+      "source": "inferred from QuickBooks monthly expense categories",
+      "date": "2026-04-15",
+      "last_reviewed": "2026-04-15"
+    },
+    {
+      "vendor": "March marketing spike",
+      "category": "Marketing",
+      "amount_last": 6000,
+      "frequency": "annual",
+      "status": "excluded",
+      "include_in_forecast": false,
+      "last_paid": "2025-03-10",
+      "next_expected": "2026-03-10",
+      "yoy_change": null,
+      "confidence": "low",
+      "notes": "Initially inferred as recurring, then excluded after the owner confirmed it was a one-time sponsorship.",
+      "source": "excluded by user after review",
+      "date": "2026-04-22",
+      "last_reviewed": "2026-04-22"
+    }
+  ],
+  "last_updated": "2026-04-22"
+}

@@ -1,0 +1,17 @@
+# OS
+.DS_Store
+
+# Local planning docs
+plans/
+
+# Build artifacts
+*.plugin
+revisor-new.plugin
+
+# Local working dirs
+.revisor/
+reports/
+validation/
+
+# Misc
+ziwUaTnp

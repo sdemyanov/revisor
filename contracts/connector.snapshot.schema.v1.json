@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://revisor.local/schemas/connector.snapshot.schema.v1.json",
+  "title": "Revisor Connector Snapshot v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "captured_at",
+    "flow_slug",
+    "sources",
+    "metrics",
+    "alerts",
+    "highlights"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "revisor.connector.snapshot.v1"
+    },
+    "captured_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "flow_slug": {
+      "type": "string"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/source_record"
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "alerts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/alert"
+      }
+    },
+    "highlights": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/highlight"
+      }
+    }
+  },
+  "$defs": {
+    "money_value": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "currency",
+        "amount"
+      ],
+      "properties": {
+        "currency": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number"
+        }
+      }
+    },
+    "source_record": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "system",
+        "account_id",
+        "pulled_at"
+      ],
+      "properties": {
+        "system": {
+          "type": "string"
+        },
+        "account_id": {
+          "type": "string"
+        },
+        "pulled_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "date_range": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "from",
+            "to"
+          ],
+          "properties": {
+            "from": {
+              "type": "string",
+              "format": "date"
+            },
+            "to": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        },
+        "capabilities_used": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "alert": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "severity",
+        "code",
+        "message"
+      ],
+      "properties": {
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "warning",
+            "critical"
+          ]
+        },
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "metric_ref": {
+          "type": "string"
+        }
+      }
+    },
+    "highlight": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "up",
+            "down",
+            "flat",
+            "mixed"
+          ]
+        }
+      }
+    }
+  }
+}
