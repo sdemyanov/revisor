@@ -5,7 +5,7 @@ description: >
   "test revisor", "is revisor installed", or "check revisor".
   Confirms the Revisor plugin is installed and responding.
 metadata:
-  version: "0.1.0"
+  version: "1.0.0"
 ---
 
 # Revisor Ping
@@ -14,7 +14,7 @@ Reply in plain text with exactly this structure:
 
 ```text
 Revisor plugin smoke test OK.
-Version: 0.1.0
+Version: 1.0.0
 Skill: ping
 ```
 

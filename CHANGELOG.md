@@ -1,8 +1,8 @@
 # Changelog
 
-## 0.1.0 - 2026-04-16
+## 1.0.0 - 2026-04-16
 
-First public release candidate for the local-first Revisor Cowork plugin.
+First public 1.0 release for the local-first Revisor Cowork plugin.
 
 ### Added
 
@@ -42,7 +42,7 @@ First public release candidate for the local-first Revisor Cowork plugin.
 
 ### Shipped Scope
 
-`v0.1.0` includes the proven QuickBooks, HubSpot, Stripe, and `biz-*` layers in one package.
+`v1.0` includes the proven QuickBooks, HubSpot, Stripe, and `biz-*` layers in one package.
 
 ### Deferred To The Next Release Train
 
