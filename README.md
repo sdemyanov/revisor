@@ -134,30 +134,6 @@ metadata:
 
 Conventions worth following: read existing context from `.revisor/context.json` rather than re-asking the user, write durable artifacts under `.revisor/snapshots/` or `.revisor/reports/` with a timestamped filename, and lean on the shared skills (`07-cross-source-synthesis`, `10-formatting`, `11-proactive-analysis`, `12-health-scoring` / `13-biz-scoring`) so your output stays consistent with the rest of Revisor.
 
-## Local Development
-
-Build the package:
-
-```bash
-./build.sh
-```
-
-Run local checks:
-
-```bash
-bash validation/run-local-checks.sh
-```
-
-For install and smoke-test steps, see [`SMOKE_TEST.md`](./SMOKE_TEST.md). For release notes, see [`CHANGELOG.md`](./CHANGELOG.md). For deeper manual validation, see [`validation/README.md`](./validation/README.md).
-
-## Not In v1.0
-
-The following are deliberately deferred to a later release train (see [`CHANGELOG.md`](./CHANGELOG.md)):
-
-- Salesforce parity (`/revisor:sf-*`)
-- Slack or email push delivery for briefings
-- Connector-specific analyses that rely on invoice, aging, vendor-detail, or customer-detail surfaces not yet proven in the current connectors
-
 ## Troubleshooting
 
 - `/revisor:ping` does not respond: the plugin is not loaded — re-run the install steps in [`SMOKE_TEST.md`](./SMOKE_TEST.md).
